@@ -1,0 +1,18 @@
+type Query {
+    dealers(
+        search: String @doc(description: "Performs a full-text search using the specified key words.")
+    ): Dealers
+    @resolver(class: "Yireo\\ExampleDealersGraphQl\\Model\\Resolver\\Dealer")
+    @doc(description: "The Dealer query returns a list of dealers")
+}
+
+type Dealers @doc(description: "The Dealers object is the top-level object returned in a dealer search") {
+    items: [DealerInterface] @doc(description: "An array of dealers that match the specified search criteria")
+    total_count: Int @doc(description: "The number of dealers returned")
+}
+
+type DealerInterface @doc(description: "Dealer data") {
+    id: String @doc(description: "Id of this Dealer")
+    name: String @doc(description: "Name of this Dealer")
+    address: String @doc(description: "Address of this Dealer")
+}
