@@ -41,9 +41,17 @@ class Dealer implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
-        $items = [];
-        $dealers = $this->dealerRepository->getAll();
+        $searchCriteriaBuilder = $this->dealerRepository->getSearchCriteriaBuilder();
 
+        $search = (isset($args['search'])) ? $args['search'] : null;
+        if ($search) {
+            $searchCriteriaBuilder->addFilter('name', '%' . $search . '%', 'like');
+        }
+
+        $searchCriteria = $searchCriteriaBuilder->create();
+        $dealers = $this->dealerRepository->getItems($searchCriteria);
+
+        $items = [];
         foreach ($dealers as $dealer) {
             $items[] = [
                 'id' => $dealer->getId(),
