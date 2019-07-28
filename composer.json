@@ -16,7 +16,8 @@
   ],
   "require": {
     "magento/framework": "*",
-    "php": ">=7.0.0"
+    "php": ">=7.0.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "*",

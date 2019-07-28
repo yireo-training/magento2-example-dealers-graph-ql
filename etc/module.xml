@@ -4,6 +4,7 @@
         <sequence>
             <module name="Yireo_ExampleDealers"/>
             <module name="Magento_GraphQl"/>
+            <module name="Magento_Store"/>
         </sequence>
     </module>
 </config>
