@@ -9,13 +9,8 @@ use Magento\TestFramework\ObjectManager;
 use Magento\TestFramework\TestCase\AbstractController as ControllerTestCase;
 use Yireo\ExampleDealers\Api\Data\DealerInterface;
 use Yireo\ExampleDealers\Api\DealerRepositoryInterface;
-use Zend\Http\Headers;
-use Zend\Http\Request;
+use Laminas\Http\Headers;
 
-/**
- * Class GraphqlTest
- * @package Yireo\Yireo_ExampleDealersGraphQl\Test\Integration
- */
 class GraphqlTest extends ControllerTestCase
 {
     /**
@@ -95,7 +90,7 @@ QUERY;
             $headers->addHeaderLine('Authorization', 'Bearer ' . $token);
         }
 
-        $this->getRequest()->setMethod(Request::METHOD_POST);
+        $this->getRequest()->setMethod('POST');
         $this->getRequest()->setHeaders($headers);
         $this->getRequest()->setContent($content);
 
