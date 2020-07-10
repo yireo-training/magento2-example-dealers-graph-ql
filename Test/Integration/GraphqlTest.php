@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Yireo\ExampleDealersGraphQl\Test\Integration;
 
-use Exception;
-use Magento\Framework\Serialize\Serializer\Serialize;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\ObjectManager;
 use Magento\TestFramework\TestCase\AbstractController as ControllerTestCase;
@@ -59,14 +57,8 @@ QUERY;
         $responseBody = $this->getResponse()->getBody();
         $this->assertNotEmpty($responseBody);
 
-        /** @var Serialize $serializer */
-        /*$serializer = $this->objectManager->get(Serialize::class);
-        try {
-            $data = $serializer->unserialize($responseBody);
-        } catch (Exception $e) {
-            $this->assertTrue(false, 'Not JSON: ' . $responseBody);
-        }*/
         $data = json_decode($responseBody, true);
+        $this->assertNotEmpty($data, 'Not JSON: '.$responseBody);
 
         $this->assertNotEmpty($data['data']['dealers']['items']);
 
@@ -89,8 +81,7 @@ QUERY;
     private function dispatchGraphQlQuery(string $query, array $variables = [], string $token = '')
     {
         $data = ['query' => $query, 'variables' => $variables];
-        $serializer = $this->objectManager->get(Serialize::class);
-        $content = $serializer->serialize($data);
+        $content = json_encode($data);
 
         $headers = new Headers();
         $headers->addHeaderLine('Content-Type', 'application/json');
