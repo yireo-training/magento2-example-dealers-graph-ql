@@ -34,4 +34,3 @@ class ModuleTest extends TestCase
         $this->assertTrue($moduleList->has(self::MODULE_NAME));
     }
 }
-
