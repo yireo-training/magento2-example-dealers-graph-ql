@@ -16,6 +16,8 @@
   ],
   "require": {
     "yireo-training/magento2-example-dealers": "*",
+    "magento/module-store": "^101.0",
+    "magento/module-graph-ql": "^100.0",
     "magento/framework": "*",
     "php": ">=7.0.0",
     "ext-json": "*"
