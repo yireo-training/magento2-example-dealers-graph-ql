@@ -60,12 +60,13 @@ QUERY;
         $this->assertNotEmpty($responseBody);
 
         /** @var Serialize $serializer */
-        $serializer = $this->objectManager->get(Serialize::class);
+        /*$serializer = $this->objectManager->get(Serialize::class);
         try {
             $data = $serializer->unserialize($responseBody);
         } catch (Exception $e) {
             $this->assertTrue(false, 'Not JSON: ' . $responseBody);
-        }
+        }*/
+        $data = json_decode($responseBody, true);
 
         $this->assertNotEmpty($data['data']['dealers']['items']);
 
