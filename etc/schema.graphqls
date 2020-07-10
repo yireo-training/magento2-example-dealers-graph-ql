@@ -14,6 +14,7 @@ type Dealers @doc(description: "The Dealers object is the top-level object retur
 type DealerInterface @doc(description: "Dealer data") {
     id: String @doc(description: "Id of this Dealer")
     name: String @doc(description: "Name of this Dealer")
+    url_key: String @doc(description: "URL key of this Dealer")
     address: String @doc(description: "Address of this Dealer")
     description: String @doc(description: "Description of this Dealer")
 }

@@ -74,6 +74,7 @@ QUERY;
                 $searchMatch = true;
             }
         }
+
         $this->assertTrue($searchMatch, 'Assuming that Kermit the Frog is in the list of dealers');
     }
 

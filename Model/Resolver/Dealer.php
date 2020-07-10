@@ -56,6 +56,7 @@ class Dealer implements ResolverInterface
             $items[] = [
                 'id' => $dealer->getId(),
                 'name' => $dealer->getName(),
+                'url_key' => $dealer->getUrlKey(),
                 'address' => $dealer->getAddress(),
                 'description' => $dealer->getDescription(),
             ];
