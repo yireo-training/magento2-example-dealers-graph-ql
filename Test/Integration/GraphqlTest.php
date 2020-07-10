@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Yireo\ExampleDealersGraphQl\Test\Integration;
 
+use Magento\Framework\Serialize\Serializer\Serialize;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\ObjectManager;
 use Magento\TestFramework\TestCase\AbstractController as ControllerTestCase;
@@ -48,19 +49,22 @@ query fetchDealers {
     items {
       name
       address
+      description
     }
   }
 }
 QUERY;
 
-        $dealer = $this->createDealer('Kermit the Frog', 'Sesame Street');
+        $dealer = $this->createDealer('Kermit the Frog', 'Sesame Street', 'Green');
         $this->assertNotEmpty($dealer->getName());
 
         $this->dispatchGraphQlQuery($query);
         $responseBody = $this->getResponse()->getBody();
         $this->assertNotEmpty($responseBody);
 
-        $data = json_decode($responseBody, true);
+        /** @var Serialize $serializer */
+        $serializer = $this->objectManager->get(Serialize::class);
+        $data = $serializer->unserialize($responseBody);
         $this->assertNotEmpty($data['data']['dealers']['items']);
 
         $items = $data['data']['dealers']['items'];
@@ -80,7 +84,9 @@ QUERY;
      */
     private function dispatchGraphQlQuery(string $query, array $variables = [], string $token = '')
     {
-        $content = json_encode(['query' => $query, 'variables' => $variables]);
+        $data = ['query' => $query, 'variables' => $variables];
+        $serializer = $this->objectManager->get(Serialize::class);
+        $content = $serializer->serialize($data);
 
         $headers = new Headers();
         $headers->addHeaderLine('Content-Type', 'application/json');
@@ -98,13 +104,15 @@ QUERY;
     /**
      * @param string $name
      * @param string $address
+     * @param string $description
      * @return DealerInterface
      */
-    private function createDealer(string $name, string $address): DealerInterface
+    private function createDealer(string $name, string $address, string $description): DealerInterface
     {
         $dealer = $this->repository->getEmpty();
         $dealer->setName($name);
         $dealer->setAddress($address);
+        $dealer->setDescription($description);
         $this->repository->save($dealer);
         return $dealer;
     }

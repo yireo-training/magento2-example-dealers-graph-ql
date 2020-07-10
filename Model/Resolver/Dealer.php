@@ -57,6 +57,7 @@ class Dealer implements ResolverInterface
                 'id' => $dealer->getId(),
                 'name' => $dealer->getName(),
                 'address' => $dealer->getAddress(),
+                'description' => $dealer->getDescription(),
             ];
         }
 
