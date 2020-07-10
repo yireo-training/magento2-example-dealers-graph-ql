@@ -18,3 +18,7 @@ type DealerInterface @doc(description: "Dealer data") {
     address: String @doc(description: "Address of this Dealer")
     description: String @doc(description: "Description of this Dealer")
 }
+
+enum UrlRewriteEntityTypeEnum {
+    DEALER
+}
