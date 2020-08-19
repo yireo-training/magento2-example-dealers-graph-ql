@@ -1,37 +1,37 @@
 {
-  "name": "yireo-training/magento2-example-dealers-graph-ql",
-  "type": "magento2-module",
-  "version": "0.0.2",
-  "license": "OSL-3.0",
-  "description": "",
-  "keywords": [
-    "composer-installer",
-    "magento"
-  ],
-  "authors": [
-    {
-      "name": "Jisse Reitsma (Yireo)",
-      "email": "jisse@yireo.com"
-    }
-  ],
-  "require": {
-    "yireo-training/magento2-example-dealers": "*",
-    "magento/module-store": "^101.0",
-    "magento/module-graph-ql": "^100.0",
-    "magento/framework": "*",
-    "php": ">=7.0.0",
-    "ext-json": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "*",
-    "composer/composer": "*@dev"
-  },
-  "autoload": {
-    "psr-4": {
-      "Yireo\\ExampleDealersGraphQl\\": ""
+    "name": "yireo-training/magento2-example-dealers-graph-ql",
+    "type": "magento2-module",
+    "version": "0.0.2",
+    "license": "OSL-3.0",
+    "description": "",
+    "keywords": [
+        "composer-installer",
+        "magento"
+    ],
+    "authors": [
+        {
+            "name": "Jisse Reitsma (Yireo)",
+            "email": "jisse@yireo.com"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "magento/framework": "^101.0|^102.0|^103.0",
+        "magento/module-graph-ql": "^100.0",
+        "magento/module-store": "^101.0",
+        "php": ">=7.3.0",
+        "yireo-training/magento2-example-dealers": "*"
     },
-    "files": [
-      "registration.php"
-    ]
-  }
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "composer/composer": "*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yireo\\ExampleDealersGraphQl\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
 }
